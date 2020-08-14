@@ -4,6 +4,8 @@ Also, you can only use the variable x
 I know the code is very messey, it is my first code :D improve it if you would like!
 
 IMPORTANT: ONLY POLYNOMIALS WILL WORK! NO FANCY STUFF LIKE LOGS OR DIVISION OR MULTIPLYING FUNCITONS. JUST ADDING TERMS AND ADDING NEGATIVE TERMS.
+
+
 EX:
 4x
 4x^3+32x^2
