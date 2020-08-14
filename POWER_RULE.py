@@ -24,40 +24,55 @@ def find_derivative ():
                 d.append(str(coef) + "x^" + str(new_power))
             elif "^" not in term:
                 d.append(term.split("x", 1)[0])
-    print(d)
-find_derivative()
+    derivative = ('+'.join(d))
+    print("the derivative is " + derivative)
 
-##make input equations graphable
-new_d = [w.replace('^', '**') for w in d]
-new_d = [w.replace('x', '*x') for w in new_d]
-new_d = ("+".join(new_d))
 
-new_equ = [w.replace('^', '**') for w in equ]
-new_equ = [w.replace('x', '*x') for w in new_equ]
-new_equ = ("".join(new_equ))
 
-#plot the derivative
+def graph_equations():
+    ##make input equations graphable
+    new_d = [w.replace('^', '**') for w in d]
+    new_d = [w.replace('x', '*x') for w in new_d]
+    new_d = ("+".join(new_d))
 
-x = np.linspace(-5,5,100)
-y = eval(new_d)
+    new_equ = [w.replace('^', '**') for w in equ]
+    new_equ = [w.replace('x', '*x') for w in new_equ]
+    new_equ = ("".join(new_equ))
 
-old_y= eval(new_equ)
+    # plot the derivative
 
-##plot jargin to make it look pretty
+    x = np.linspace(-5, 5, 100)
+    y = eval(new_d)
 
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1)
-ax.spines['left'].set_position('center')
-ax.spines['bottom'].set_position('zero')
-ax.spines['right'].set_color('none')
-ax.spines['top'].set_color('none')
-ax.xaxis.set_ticks_position('bottom')
-ax.yaxis.set_ticks_position('left')
-plt.grid()
+    old_y = eval(new_equ)
 
-plt.plot(x,y, 'r', label= 'Derivative')
-plt.plot(x,old_y, 'b', label=' Original Equation')
-plt.legend(loc='upper left')
+    #plot jargin to make it look pretty
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+    ax.spines['left'].set_position('center')
+    ax.spines['bottom'].set_position('zero')
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none')
+    ax.xaxis.set_ticks_position('bottom')
+    ax.yaxis.set_ticks_position('left')
 
-# show the plot
-plt.show()
+    if 'x' not in new_d:
+        plt.plot(x, old_y, 'b', label=' Original Equation')
+        plt.grid()
+        plt.hlines(new_d, -50, 50,'r', label= 'Derivative')
+        plt.legend(loc='upper left')
+        plt.show()
+        return
+
+    else:
+        plt.grid()
+
+        plt.plot(x, y, 'r', label='Derivative')
+        plt.plot(x, old_y, 'b', label=' Original Equation')
+        plt.legend(loc='upper left')
+        plt.show()
+        return
+
+if __name__ == "__main__":
+    find_derivative()
+    graph_equations()
