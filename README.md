@@ -14,5 +14,6 @@ EX:
 
 WILL NOT WORK:
 
-ln(3x)
-3x/3x^2
+ln(3x), <br>
+3x/3x^2, <br>
+5x^x <br>
