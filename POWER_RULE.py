@@ -1,15 +1,22 @@
 ##import needed libraries
-import numpy as np
-import matplotlib.pyplot as plt
+from numpy import linspace
+from matplotlib.pyplot import figure, plot, grid, hlines, legend, show
 
 #empty string and list used to be added to further into the program
-s=""
-d=[]
+s = ""
+d = []
+
 ##derivative function only usefull for polynomials to de derived
 def find_derivative ():
     ##get user input
     global equ
     equ = (input("enter your equation to find the derivative:")).lower()
+    ##form the input into somethine usable
+    equ = f'+{equ}'
+    equ = equ.replace('+x', '+1x')
+    equ = equ.replace('-x', '-1x')
+    if equ[0]=='+':
+        equ = equ[1:]
     terms = list(equ.split("+"))
     ##logic for power rule
     for term in terms:
@@ -28,7 +35,6 @@ def find_derivative ():
     print("the derivative is " + derivative)
 
 
-
 def graph_equations():
     ##make input equations graphable
     new_d = [w.replace('^', '**') for w in d]
@@ -41,13 +47,13 @@ def graph_equations():
 
     # plot the derivative
 
-    x = np.linspace(-5, 5, 100)
+    x = linspace(-5, 5, 100)
     y = eval(new_d)
 
     old_y = eval(new_equ)
 
-    #plot jargin to make it look pretty
-    fig = plt.figure()
+    ##plot jargin to make it look pretty
+    fig = figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.spines['left'].set_position('center')
     ax.spines['bottom'].set_position('zero')
@@ -57,20 +63,19 @@ def graph_equations():
     ax.yaxis.set_ticks_position('left')
 
     if 'x' not in new_d:
-        plt.plot(x, old_y, 'b', label=' Original Equation')
-        plt.grid()
-        plt.hlines(new_d, -50, 50,'r', label= 'Derivative')
-        plt.legend(loc='upper left')
-        plt.show()
+        plot(x, old_y, 'b', label=' Original Equation')
+        grid()
+        hlines(new_d, -50, 50 ,'r', label= 'Derivative')
+        legend(loc='upper left')
+        show()
         return
 
     else:
-        plt.grid()
-
-        plt.plot(x, y, 'r', label='Derivative')
-        plt.plot(x, old_y, 'b', label=' Original Equation')
-        plt.legend(loc='upper left')
-        plt.show()
+        grid()
+        plot(x, y, 'r', label='Derivative')
+        plot(x, old_y, 'b', label=' Original Equation')
+        legend(loc='upper left')
+        show()
         return
 
 if __name__ == "__main__":
